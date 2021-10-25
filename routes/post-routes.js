@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Post = require("../models/Post.model");
 const fileUpload = require("../config/cloudinary");
 
+
 //Get all the posts
 router.get("/posts", async (req, res) => {
   try {
@@ -14,27 +15,34 @@ router.get("/posts", async (req, res) => {
   }
 });
 
+
 //Create a post
 router.post("/post", async (req, res) => {
-    console.log("posting", req.session.currentUser);
-  const { title, description, imageUrl } = req.body;
+  let postCategory;
 
-  if (!title || !description || !imageUrl) {
+  const { title, imageUrl, category } = req.body;
+
+  if (!title || !imageUrl) {
     res.status(400).json({ message: "missing fields" });
     return;
   }
 
+  if (!category) {
+    postCategory = "others";
+  } else {
+    postCategory = category;
+  }
+
   try {
-    
     const response = await Post.create({
       title,
-      description,
       imageUrl,
       user: req.session.currentUser,
+      category: postCategory,
     });
     res.status(200).json(response);
   } catch (e) {
-    res.status(500).json({ message: e });
+    res.status(500).json({ message: e.message });
   }
 });
 

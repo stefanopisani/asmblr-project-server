@@ -15,6 +15,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "hbs": "^4.1.2",
+    "meme-fetch": "^1.0.3",
+    "memes-js": "^1.0.8",
     "mongoose": "^6.0.7",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
