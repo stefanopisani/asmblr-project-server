@@ -25,8 +25,9 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     cookie: {
-      sameSite: true, //both fe and be are running on the same hostname
-      httpOnly: true, //we are not using https
+      sameSite: "none",//true, //both fe and be are running on the same hostname
+      secure: true,
+      httpOnly: false, //true, //we are not using https
       maxAge: 600000, //session time
     },
     rolling: true,
