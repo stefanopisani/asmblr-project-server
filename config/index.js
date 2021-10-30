@@ -41,7 +41,7 @@ module.exports = (app) => {
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));
   app.use(cors({
     credentials: true,
-    origin: [process.env.CLIENT_HOSTNAME , "https://gif-meme-asmblr.netlify.app", "http://localhost:3000"] 
+    origin: [process.env.CLIENT_HOSTNAME , "https://hungry-kalam-ceb95f.netlify.app", "http://localhost:3000"] 
   }))
 };
 
