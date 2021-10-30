@@ -15,6 +15,17 @@ router.get("/posts", async (req, res) => {
   }
 });
 
+router.get("/user-posts", async (req, res) => {
+  try {
+    console.log("request", req.session.currentUser);
+    // we can protect also in the backend and if req.session.currentUser is undefined don't show posts
+    const posts = await Post.find({user: req.session.currentUser}).populate("user");
+    res.status(200).json(posts);
+  } catch (e) {
+    res.status(500).json({ message: e });
+  }
+});
+
 
 //Create a post
 router.post("/post", async (req, res) => {
