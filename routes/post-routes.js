@@ -82,8 +82,8 @@ router.get("/posts/:id", async (req, res) => {
 
 //Edit post
 router.put("/posts/:id", async (req, res) => {
-  const { title, description, imageUrl } = req.body;
-  if (!title || !description) {
+  const { title, category} = req.body;
+  if (!title || !category) {
     res.status(400).json({ message: "missing fields" });
     return;
   }
@@ -93,7 +93,7 @@ router.put("/posts/:id", async (req, res) => {
       req.params.id,
       {
         title,
-        description,
+        category,
       },
       { new: true }
     );
